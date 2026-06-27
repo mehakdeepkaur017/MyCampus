@@ -1073,7 +1073,7 @@ export default function TasksPage() {
                                     </Button>
                                   </div>
                                 ) : (
-                                  <Button onClick={() => handleFileUpload(assignment.id)} className="rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-white dark:text-slate-900 font-bold h-12 px-6 w-full md:w-auto shadow-sm hover:shadow-md transition-all">
+                                  <Button onClick={() => handleFileUpload(assignment.id)} className="rounded-xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-100 dark:hover:bg-white dark:text-slate-900 font-bold h-12 px-6 w-full md:w-auto shadow-sm hover:shadow-md transition-all">
                                     <Plus className="mr-2 h-5 w-5" />
                                     Upload Work
                                   </Button>
