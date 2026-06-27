@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, BookOpen, Calendar, CheckCircle2, Shield, LayoutDashboard, Clock, UserCog, User, Key, UserPlus } from "lucide-react";
 import Image from "next/image";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useRef } from "react";
@@ -50,7 +51,7 @@ export default function LandingPage() {
   const opacityHero = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <div ref={containerRef} className="flex min-h-screen flex-col bg-[#020817] text-slate-50 selection:bg-indigo-500/30">
+    <div ref={containerRef} className="flex min-h-screen flex-col bg-slate-50 dark:bg-[#020817] text-slate-900 dark:text-slate-50 selection:bg-indigo-500/30">
       
       {/* Decorative Background Elements */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
@@ -61,21 +62,22 @@ export default function LandingPage() {
       </div>
 
       {/* Navbar */}
-      <header className="fixed top-0 z-50 w-full border-b border-slate-800/50 bg-[#020817]/80 backdrop-blur-2xl">
+      <header className="fixed top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800/50 bg-white/80 dark:bg-[#020817]/80 backdrop-blur-2xl">
         <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
           <div className="flex items-center gap-3">
             <div className="relative h-8 w-8 rounded-lg overflow-hidden flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-500/20">
               <span className="font-bold text-white tracking-tighter">MC</span>
             </div>
-            <span className="text-xl font-bold tracking-tight text-white">MyCampus</span>
+            <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">MyCampus</span>
           </div>
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-            <Link href="#features" className="hover:text-white transition-colors">Features</Link>
-            <Link href="#demo" className="hover:text-white transition-colors">Live Demo</Link>
-            <Link href="#auth" className="hover:text-white transition-colors">Join Now</Link>
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
+            <Link href="#features" className="hover:text-slate-900 dark:hover:text-white transition-colors">Features</Link>
+            <Link href="#demo" className="hover:text-slate-900 dark:hover:text-white transition-colors">Live Demo</Link>
+            <Link href="#auth" className="hover:text-slate-900 dark:hover:text-white transition-colors">Join Now</Link>
           </nav>
           <div className="flex items-center gap-4">
-            <Link href="/login" className="hidden sm:block text-sm font-medium text-slate-300 hover:text-white transition-colors">
+            <ThemeToggle />
+            <Link href="/login" className="hidden sm:block text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">
               Sign In
             </Link>
             <Link href="/login?tab=admin" className="hidden sm:block text-sm font-medium text-purple-400 hover:text-purple-300 transition-colors">
