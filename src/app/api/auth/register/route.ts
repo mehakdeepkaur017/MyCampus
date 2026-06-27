@@ -5,12 +5,12 @@ import * as z from "zod";
 import { cookies } from "next/headers";
 
 const registerSchema = z.object({
-  name: z.string().min(2),
+  name: z.string().min(1),
   email: z.string().email(),
-  password: z.string().min(6),
+  password: z.string().min(1),
   role: z.enum(["STUDENT", "ADMIN"]).default("STUDENT"),
   department: z.string().optional(),
-  semester: z.number().min(1).max(8).optional(),
+  semester: z.number().optional(),
 });
 
 export async function POST(req: Request) {
