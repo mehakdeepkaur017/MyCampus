@@ -28,8 +28,12 @@ export async function POST(req: Request) {
     }
 
     if (user.role !== data.role) {
+      const errorMessage = user.role === "STUDENT" && data.role === "ADMIN"
+        ? "Students cannot log in through the Admin portal. Please use the Student login tab."
+        : `You do not have access to the ${data.role} portal`;
+      
       return NextResponse.json(
-        { error: `You do not have access to the ${data.role} portal` },
+        { error: errorMessage },
         { status: 403 }
       );
     }
