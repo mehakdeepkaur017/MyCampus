@@ -90,6 +90,7 @@ async function main() {
       department,
       semester,
       dueDate: nextMonth,
+      documentUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
       isDemoData: true
     }
   });
@@ -101,6 +102,7 @@ async function main() {
       department: null, 
       semester: null,
       dueDate: nextWeek,
+      documentUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
       isDemoData: true
     }
   });
