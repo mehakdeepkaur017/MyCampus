@@ -229,7 +229,21 @@ export default function AdminTimetablePage() {
   }
   
   const renderWeekly = () => {
-    const hours = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"]
+    // Generate hours dynamically based on schedule
+    let minHour = 9;
+    let maxHour = 17;
+    schedule.forEach(s => {
+      const h = parseInt(s.startTime.substring(0,2));
+      const endH = parseInt(s.endTime.substring(0,2));
+      if (h < minHour) minHour = h;
+      if (endH > maxHour) maxHour = endH;
+    });
+    
+    const hours = [];
+    for(let i=minHour; i<=maxHour; i++) {
+      hours.push(i.toString().padStart(2, '0') + ":00");
+    }
+
     return (
       <div className="bg-white dark:bg-[#0a0a0a] border border-slate-200 dark:border-slate-800 shadow-sm rounded-3xl p-6 overflow-x-auto">
         <div className="min-w-[800px]">
@@ -241,15 +255,15 @@ export default function AdminTimetablePage() {
           </div>
           <div className="relative">
             {hours.map(hour => (
-              <div key={hour} className="grid grid-cols-[80px_1fr_1fr_1fr_1fr_1fr_1fr_1fr] gap-4 border-t border-slate-100 dark:border-slate-800/60 py-4 h-24">
+              <div key={hour} className="grid grid-cols-[80px_1fr_1fr_1fr_1fr_1fr_1fr_1fr] gap-4 border-t border-slate-100 dark:border-slate-800/60 py-4 min-h-[96px]">
                 <div className="text-sm font-medium text-slate-500 text-right pr-4">{hour}</div>
                 {WEEKDAYS.map(day => {
                   const hrPrefix = hour.substring(0, 2)
-                  const cls = schedule.find(s => s.day === day && s.startTime.startsWith(hrPrefix))
+                  const classes = schedule.filter(s => s.day === day && s.startTime.startsWith(hrPrefix))
                   return (
-                    <div key={`${day}-${hour}`} className="relative h-full">
-                      {cls && (
-                        <div className={`absolute top-0 left-0 w-full rounded-xl p-3 border-0 shadow-sm ${SUBJECT_COLORS[cls.subject] || DEFAULT_COLOR} h-[90%] z-10 flex flex-col justify-center overflow-hidden transition-transform hover:scale-105 cursor-pointer`} onClick={() => handleOpenDialog(cls)}>
+                    <div key={`${day}-${hour}`} className="relative h-full flex flex-col gap-2">
+                      {classes.map(cls => (
+                        <div key={cls.id} className={`w-full rounded-xl p-3 border-0 shadow-sm ${SUBJECT_COLORS[cls.subject] || DEFAULT_COLOR} flex flex-col justify-center overflow-hidden transition-transform hover:scale-[1.02] cursor-pointer`} onClick={() => handleOpenDialog(cls)}>
                           <p className="font-bold text-xs leading-tight mb-1">{cls.subject}</p>
                           <p className="text-[10px] opacity-80">{cls.startTime}-{cls.endTime}</p>
                           {(cls.department || cls.semester) && (
@@ -258,7 +272,7 @@ export default function AdminTimetablePage() {
                             </p>
                           )}
                         </div>
-                      )}
+                      ))}
                     </div>
                   )
                 })}

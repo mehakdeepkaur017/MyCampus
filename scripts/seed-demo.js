@@ -44,9 +44,9 @@ async function main() {
 
   console.log('Creating Timetable entries...');
   const subjects = [
-    { name: "Data Structures", faculty: "Dr. Smith", room: "Room 101" },
-    { name: "Web Development", faculty: "Prof. Johnson", room: "Lab 3" },
-    { name: "Database Systems", faculty: "Dr. Williams", room: "Room 205" }
+    { name: "Data Structures", faculty: "Dr. Smith", room: "Room 101", mTime: { start: "09:00", end: "10:30" }, wTime: { start: "09:00", end: "10:30" } },
+    { name: "Web Development", faculty: "Prof. Johnson", room: "Lab 3", mTime: { start: "11:00", end: "12:30" }, wTime: { start: "11:00", end: "12:30" } },
+    { name: "Database Systems", faculty: "Dr. Williams", room: "Room 205", mTime: { start: "13:30", end: "15:00" }, wTime: { start: "13:30", end: "15:00" } }
   ];
 
   for (const sub of subjects) {
@@ -56,8 +56,8 @@ async function main() {
         faculty: sub.faculty,
         room: sub.room,
         day: "Monday",
-        startTime: "09:00",
-        endTime: "10:30",
+        startTime: sub.mTime.start,
+        endTime: sub.mTime.end,
         department,
         semester,
         isDemoData: true
@@ -69,8 +69,8 @@ async function main() {
         faculty: sub.faculty,
         room: sub.room,
         day: "Wednesday",
-        startTime: "11:00",
-        endTime: "12:30",
+        startTime: sub.wTime.start,
+        endTime: sub.wTime.end,
         department,
         semester,
         isDemoData: true
