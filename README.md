@@ -2,6 +2,15 @@
 
 A comprehensive, production-ready full-stack application built for modern universities and schools. Powered by **Next.js 15 (App Router)**, **TypeScript**, **Tailwind CSS**, and **PostgreSQL (Neon)** using the **Prisma ORM**.
 
+## 🔑 Demo Credentials
+
+To quickly test the application, you can use the following pre-configured demo accounts or click the **Demo Login** buttons on the login page:
+
+| Role | Email | Password |
+|---|---|---|
+| **Admin** | `admin@mycampus.edu` | `admin123` |
+| **Student** | `student@mycampus.edu` | `student123` |
+
 ## ✨ Key Features
 
 ### Unified Authentication System
