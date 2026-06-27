@@ -32,6 +32,7 @@ export default function UnifiedLoginPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [activeTab, setActiveTab] = useState("student")
+  const [loginError, setLoginError] = useState("")
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -62,6 +63,7 @@ export default function UnifiedLoginPage() {
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
     setIsLoading(true)
+    setLoginError("")
     try {
       const role = activeTab === "admin" ? "ADMIN" : "STUDENT"
       const res = await fetch("/api/auth/login", {
@@ -81,6 +83,7 @@ export default function UnifiedLoginPage() {
       router.refresh()
     } catch (error: any) {
       toast.error(error.message)
+      setLoginError(error.message)
     } finally {
       setIsLoading(false)
     }
@@ -90,6 +93,7 @@ export default function UnifiedLoginPage() {
     const firstError = Object.values(errors)[0] as any
     if (firstError?.message) {
       toast.error(firstError.message)
+      setLoginError(firstError.message)
     }
   }
 
@@ -201,6 +205,12 @@ export default function UnifiedLoginPage() {
                       </FormItem>
                     )}
                   />
+
+                  {loginError && (
+                    <div className="p-3 bg-red-500/10 border border-red-500/50 rounded-lg text-sm text-red-400 text-center font-medium shadow-sm">
+                      {loginError}
+                    </div>
+                  )}
                   
                   <Button 
                     className={`w-full mt-6 h-12 text-base font-semibold shadow-md transition-all ${
