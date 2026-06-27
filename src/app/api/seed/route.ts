@@ -61,12 +61,6 @@ export async function GET() {
         documentUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
       },
       {
-        title: "Implement A* Search Algorithm",
-        subject: "Data Structures",
-        dueDate: new Date(new Date().setDate(new Date().getDate() + 7)),
-        documentUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
-      },
-      {
         title: "Design Pattern Case Study",
         subject: "Software Engineering",
         dueDate: new Date(new Date().setDate(new Date().getDate() + 5)),

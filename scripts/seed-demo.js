@@ -83,17 +83,6 @@ async function main() {
   const nextWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
   const nextMonth = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
 
-  const a1 = await prisma.assignment.create({
-    data: {
-      title: "Implement A* Search Algorithm",
-      subject: "Data Structures",
-      department,
-      semester,
-      dueDate: nextWeek,
-      isDemoData: true
-    }
-  });
-
   const a2 = await prisma.assignment.create({
     data: {
       title: "Build a REST API",
@@ -113,16 +102,6 @@ async function main() {
       semester: null,
       dueDate: nextWeek,
       isDemoData: true
-    }
-  });
-
-  console.log('Creating Submissions...');
-  await prisma.assignmentSubmission.create({
-    data: {
-      assignmentId: a1.id,
-      studentId: student.id,
-      status: "SUBMITTED",
-      submissionUrl: "data:application/pdf;base64,JVBERi0xLjQKJcOkw7zDtsOfCjIgMCBvYmoKPDwvTGVuZ3RoIDMgMCBSL0ZpbHRlci9GbGF0ZURlY29kZT4+CnN0cmVhbQp4nDPQM1Qo5ypUMFAwALJMLU31jBQsTAz1DBSM/FzDQEwF38wyhWCF4sSSxJLUFCA/EUkXwQUB/0wMxQplmSDRzLw0hZLU4mIIRx3CVAoAWnUWmgplbmRzdHJlYW0KZW5kb2JqCgozIDAgb2JqCjkzCmVuZG9iagoKMSAwIG9iago8PC9UeXBlL1BhZ2UvTWVkaWFCb3hbMCAwIDU5NSA4NDJdL1BhcmVudCA0IDAgUi9SZXNvdXJjZXM8PC9Gb250PDwvRjEgNSAwIFI+Pj4+L0NvbnRlbnRzIDIgMCBSPj4KZW5kb2JqCgo0IDAgb2JqCjw8L1R5cGUvUGFnZXMvS2lkc1sxIDAgUl0vQ291bnQgMT4+CmVuZG9iagoKNSAwIG9iago8PC9UeXBlL0ZvbnQvU3VidHlwZS9UeXBlMS9CYXNlRm9udC9IZWx2ZXRpY2E+PgplbmRvYmoKCjYgMCBvYmoKPDwvVHlwZS9DYXRhbG9nL1BhZ2VzIDQgMCBSPj4KZW5kb2JqCgo3IDAgb2JqCjw8L1Byb2R1Y2VyKEdob3N0c2NyaXB0IDkuNTMpL0NyZWF0aW9uRGF0ZShEOjIwMjMxMDI0MTIzNDU2Wik+PgplbmRvYmoKCnhyZWYKMCA4CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDE2MSAwMDAwMCBuIAowMDAwMDAwMDE1IDAwMDAwIG4gCjAwMDAwMDAxNDIgMDAwMDAgbiAKMDAwMDAwMDI2NSAwMDAwMCBuIAowMDAwMDAwMzIzIDAwMDAwIG4gCjAwMDAwMDA0MTEgMDAwMDAgbiAKMDAwMDAwMDQ2MCAwMDAwMCBuIAp0cmFpbGVyCjw8L1NpemUgOC9Sb290IDYgMCBSL0luZm8gNyAwIFI+PgpzdGFydHhyZWYKNTQ3CiUlRU9GCg=="
     }
   });
 
