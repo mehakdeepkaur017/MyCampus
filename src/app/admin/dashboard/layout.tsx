@@ -3,6 +3,7 @@ import { getCurrentSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { UserNav } from "@/components/user-nav";
+import { AdminMobileNav } from "@/components/admin-mobile-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
   LayoutDashboard,
@@ -85,12 +86,7 @@ export default async function AdminDashboardLayout({
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Header */}
         <header className="flex h-16 items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-[#0a0a0a]/80 px-4 md:px-6 backdrop-blur-xl">
-          <div className="flex items-center md:hidden">
-            <button className="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
-              <Menu className="h-6 w-6" />
-            </button>
-            <span className="ml-4 font-semibold md:hidden dark:text-white text-slate-900">Admin</span>
-          </div>
+          <AdminMobileNav />
           
           <div className="hidden md:flex flex-1">
             {/* Search */}
